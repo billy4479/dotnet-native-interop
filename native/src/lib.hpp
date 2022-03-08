@@ -1,13 +1,15 @@
 #pragma once
 
+#include "Visibility.hpp"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void Print();
+DLL_PUBLIC void Print();
 
-void MakeWindow();
-void CloseWindow();
+DLL_PUBLIC void MakeWindow();
+DLL_PUBLIC void CloseWindow();
 
 #ifdef __cplusplus
 }

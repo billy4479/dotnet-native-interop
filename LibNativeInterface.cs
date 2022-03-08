@@ -15,13 +15,13 @@ namespace DotnetNativeInterprop
 
     class WindowsLibNative : ILibNative
     {
-        [DllImport("./libnative.dll", EntryPoint = "Print")]
+        [DllImport("./native.dll", EntryPoint = "Print")]
         private static extern void CallPrint();
 
-        [DllImport("./libnative.dll", EntryPoint = "MakeWindow")]
+        [DllImport("./native.dll", EntryPoint = "MakeWindow")]
         private static extern void CallMakeWindow();
 
-        [DllImport("./libnative.dll", EntryPoint = "CloseWindow")]
+        [DllImport("./native.dll", EntryPoint = "CloseWindow")]
         private static extern void CallCloseWindow();
 
 

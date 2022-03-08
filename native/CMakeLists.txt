@@ -51,7 +51,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
   $<$<NOT:$<CXX_COMPILER_ID:MSVC>>: -Wall -Wextra -pedantic -Werror>
 )
 
-target_compile_options(${PROJECT_NAME} PRIVATE -fexceptions)
+target_compile_options(${PROJECT_NAME} PRIVATE)
 
 # file(GLOB ASSETS "assets/*")
 # file(COPY ${ASSETS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/assets)
