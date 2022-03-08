@@ -1,23 +1,21 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
+﻿
 namespace DotnetNativeInterprop
 {
     public class Program
     {
-
         static void Main()
         {
-            var LibNative = LibNativeProvider.Get();
+            using var window = new MyWindow();
+            Thread.Sleep(1000);
+            window.Clear(0, 0xff, 0);
 
-            Console.WriteLine("Hello World!");
-            LibNative.Print();
+            Thread.Sleep(1000);
+            window.Clear(0, 0, 0xff);
 
-            LibNative.MakeWindow();
+            Thread.Sleep(1000);
+            window.Clear(0xff, 0, 0);
 
-            Thread.Sleep(5000);
-
-            LibNative.CloseWindow();
+            Thread.Sleep(1000);
         }
     }
 }

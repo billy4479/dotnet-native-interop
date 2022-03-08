@@ -1,80 +1,80 @@
 using System.Runtime.InteropServices;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace DotnetNativeInterprop
 {
-
     // Thanks to https://stackoverflow.com/a/52297584
 
     interface ILibNative
     {
-        void Print();
-        void MakeWindow();
-        void CloseWindow();
+        IntPtr MakeWindow();
+        void CloseWindow(IntPtr ptr);
+        void Clear(IntPtr ptr, byte r, byte g, byte b);
     }
 
     class WindowsLibNative : ILibNative
     {
-        [DllImport("./native.dll", EntryPoint = "Print")]
-        private static extern void CallPrint();
-
         [DllImport("./native.dll", EntryPoint = "MakeWindow")]
-        private static extern void CallMakeWindow();
+        private static extern IntPtr CallMakeWindow();
 
         [DllImport("./native.dll", EntryPoint = "CloseWindow")]
-        private static extern void CallCloseWindow();
+        private static extern void CallCloseWindow(IntPtr ptr);
 
+        [DllImport("./native.dll", EntryPoint = "Clear")]
+        private static extern void CallClear(IntPtr ptr, byte r, byte g, byte b);
 
-        public void Print()
+        public IntPtr MakeWindow()
         {
-            CallPrint();
+            return CallMakeWindow();
         }
 
-        public void MakeWindow()
+        public void CloseWindow(IntPtr ptr)
         {
-            CallMakeWindow();
+            CallCloseWindow(ptr);
         }
 
-        public void CloseWindow()
+        public void Clear(IntPtr ptr, byte r, byte g, byte b)
         {
-            CallCloseWindow();
+            CallClear(ptr, r, g, b);
         }
     }
 
     class LinuxLibNative : ILibNative
     {
-        [DllImport("./libnative.so", EntryPoint = "Print")]
-        private static extern void CallPrint();
-
         [DllImport("./libnative.so", EntryPoint = "MakeWindow")]
-        private static extern void CallMakeWindow();
+        private static extern IntPtr CallMakeWindow();
 
         [DllImport("./libnative.so", EntryPoint = "CloseWindow")]
-        private static extern void CallCloseWindow();
+        private static extern void CallCloseWindow(IntPtr ptr);
 
+        [DllImport("./libnative.so", EntryPoint = "Clear")]
+        private static extern void CallClear(IntPtr ptr, byte r, byte g, byte b);
 
-        public void Print()
+        public IntPtr MakeWindow()
         {
-            CallPrint();
+            return CallMakeWindow();
         }
 
-        public void MakeWindow()
+        public void CloseWindow(IntPtr ptr)
         {
-            CallMakeWindow();
+            CallCloseWindow(ptr);
         }
 
-        public void CloseWindow()
+        public void Clear(IntPtr ptr, byte r, byte g, byte b)
         {
-            CallCloseWindow();
+            CallClear(ptr, r, g, b);
         }
     }
 
-
     static class LibNativeProvider
     {
+        private static ILibNative? Instance = null;
         public static ILibNative Get()
         {
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? new WindowsLibNative() : new LinuxLibNative();
+            if (Instance == null)
+                Instance = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? new WindowsLibNative() : new LinuxLibNative();
+
+            return Instance;
         }
     }
 }
