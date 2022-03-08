@@ -6,25 +6,18 @@ namespace DotnetNativeInterprop
     public class Program
     {
 
-        [DllImport("./libnative.so")]
-        private static extern void Print();
-
-        [DllImport("./libnative.so")]
-        private static extern void MakeWindow();
-
-        [DllImport("./libnative.so")]
-        private static extern void CloseWindow();
-
         static void Main()
         {
-            Console.WriteLine("Hello World!");
-            Print();
+            var LibNative = LibNativeProvider.Get();
 
-            MakeWindow();
+            Console.WriteLine("Hello World!");
+            LibNative.Print();
+
+            LibNative.MakeWindow();
 
             Thread.Sleep(5000);
 
-            CloseWindow();
+            LibNative.CloseWindow();
         }
     }
 }

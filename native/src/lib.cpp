@@ -1,10 +1,6 @@
 #include "lib.hpp"
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_pixels.h>
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_timer.h>
-#include <SDL2/SDL_video.h>
 
 #include <cstdio>
 #include <iostream>
