@@ -1,4 +1,4 @@
-namespace DotnetNativeInterprop
+namespace DotnetNativeInterop
 {
     internal class MyWindow : IDisposable
     {

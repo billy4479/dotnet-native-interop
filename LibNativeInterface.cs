@@ -1,7 +1,6 @@
 using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 
-namespace DotnetNativeInterprop
+namespace DotnetNativeInterop
 {
     // Thanks to https://stackoverflow.com/a/52297584
 

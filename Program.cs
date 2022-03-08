@@ -1,5 +1,4 @@
-﻿
-namespace DotnetNativeInterprop
+﻿namespace DotnetNativeInterop
 {
     public class Program
     {
